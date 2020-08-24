@@ -15,7 +15,9 @@ export default class App extends React.Component {
         { id:1, title:'Cook dinner', done:false}
       ]
     }
+    
   }
+
   
   addNewTodo(){
     let todos= this.state.todos;
@@ -30,7 +32,8 @@ export default class App extends React.Component {
       todos:todos,
       todoInput:''
     });
-
+    
+    
   }
 
   toggleDone(item){
@@ -61,8 +64,9 @@ export default class App extends React.Component {
         <Header title="todoapp" />
 
         <InputBar 
-          textChange={todoInput => this.setState({todoInput})}
           addNewTodo={()=>this.addNewTodo()}
+          todoInput={this.state.todoInput}
+          textChange={todoInput=>this.setState({todoInput})}
         />
 
         <FlatList 
