@@ -23,6 +23,9 @@ export default class TodoItem extends React.Component{
                     color={(todoItem.done)? 'rgba(200,0,0,0.5)':'rgba(255,0,0,1)'}
                     onPress={()=>this.props.removeTodo()}
                 >
+                <Text style={(todoItem.done)? {color: '#aaaaaa' }:{color:'#313131'}}>
+                
+                </Text>   
                     
                 </Button>
             </TouchableOpacity>

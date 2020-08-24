@@ -1,19 +1,38 @@
-import React from 'react';
-import {StyleSheet,Text,View,TextInput,TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import {StyleSheet,Text,View,TextInput,TouchableOpacity, Button} from 'react-native';
 
-const InputBar=(props)=>{
-    return (
-        <View style={styles.inputContainer}>
-            <TextInput 
-                style={styles.input} 
-                onChangeText={(todoInput)=>props.textChange(todoInput)}
-                value={props.todoInput }
-            />
-            <TouchableOpacity style={styles.addButton} onPress={props.addNewTodo}>
-                <Text style={styles.addButtonText}>ADD</Text>
-            </TouchableOpacity>
-        </View>
-    );
+
+export default class InputBar extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={todoInput: ''};
+        
+    }
+
+    submitAndClear = () => {
+
+        this.setState({
+          todoInput: ''
+        })
+    }
+
+    render(){
+        return(
+            <View style={styles.inputContainer}>
+                <TextInput 
+                    style={styles.input} 
+                    onChangeText={(todoInput)=>this.props.textChange(todoInput)}
+                    value={this.props.todoInput }
+                    clearButtonMode="always"
+                    placeholder='Enter text...'
+                    
+                />
+                <TouchableOpacity style={styles.addButton} onPress={this.submitAndClear,()=>this.props.addNewTodo()}>
+                    <Text style={styles.addButtonText}>ADD</Text>
+                </TouchableOpacity>
+            </View> 
+        );
+    }
 }
 
 const styles=StyleSheet.create({
@@ -42,5 +61,3 @@ const styles=StyleSheet.create({
         fontWeight: '700'
     }
 });
-
-export default InputBar;
